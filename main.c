@@ -58,6 +58,7 @@ uint32_t PortF_Input(void){
 void PortF_Output(uint32_t data){ // write PF3-PF1 outputs
   GPIO_PORTF_DATA_R = data;      
 }
+
 void BookExamples(void){ // examples from the book
   int8_t cc = 0x56; // (‘V’)
   int32_t xx = 100;
@@ -78,12 +79,14 @@ void GPIO_Init(void){
   GPIO_PORTD_AFSEL_R &= ~0x0F;      // 6) regular port function 
   GPIO_PORTD_DEN_R |= 0x0F;         // 7) enable digital I/O on PD3-0
 }
+
 int main(void){
   Output_Init();              // initialize output device
-  char x, y, add;
+  PortF_Init();
+	char x, y, add;
 	int op1, op2, zOut;
 	printf("Input first number:\n");
-	
+	PortF_Output(RED);
 	//Replaced by UART I/O
 	scanf("%c", &x);
 	op1 = (int)x;
@@ -94,6 +97,7 @@ int main(void){
 	printf("%d\n", op2);
 	printf("Right button to add\nLeft button to subtract");
 	scanf("%c", &add);
+	PortF_Output(GREEN);
 	switch(add){
 		case '1':
 			zOut = op1 + op2;

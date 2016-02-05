@@ -14,7 +14,9 @@ Section Cross References
     main.o(i.BookExamples) refers to f2d.o(.text) for __aeabi_f2d
     main.o(i.main) refers to _scanf_str.o(.text) for _scanf_string
     main.o(i.main) refers to uart.o(i.Output_Init) for Output_Init
+    main.o(i.main) refers to main.o(i.PortF_Init) for PortF_Init
     main.o(i.main) refers to printfa.o(i.__0printf) for __2printf
+    main.o(i.main) refers to main.o(i.PortF_Output) for PortF_Output
     main.o(i.main) refers to __0scanf.o(.text) for __0scanf
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry10a.o(.ARM.Collect$$$$0000000D) for __rt_final_cpp
     entry.o(.ARM.Collect$$$$00000000) refers (Special) to entry11a.o(.ARM.Collect$$$$0000000F) for __rt_final_exit
@@ -309,12 +311,10 @@ Removing Unused input sections from the image.
     Removing uart.o(i.ferror), (8 bytes).
     Removing main.o(i.BookExamples), (256 bytes).
     Removing main.o(i.GPIO_Init), (112 bytes).
-    Removing main.o(i.PortF_Init), (92 bytes).
     Removing main.o(i.PortF_Input), (16 bytes).
-    Removing main.o(i.PortF_Output), (12 bytes).
     Removing f2d.o(.text), (38 bytes).
 
-13 unused section(s) (total 570 bytes) removed from the image.
+11 unused section(s) (total 466 bytes) removed from the image.
 
 ==============================================================================
 
@@ -325,48 +325,48 @@ Image Symbol Table
     Symbol Name                              Value     Ov Type        Size  Object(Section)
 
     RESET                                    0x00000000   Section      660  startup.o(RESET)
-    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_c.o ABSOLUTE
     ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  isspace_c.o ABSOLUTE
-    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
+    ../clib/microlib/ctype/ctype.c           0x00000000   Number         0  ctype_c.o ABSOLUTE
     ../clib/microlib/division.c              0x00000000   Number         0  uldiv.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/division.c              0x00000000   Number         0  uidiv.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry8a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9a.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry9b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry11a.o ABSOLUTE
+    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry.o ABSOLUTE
     ../clib/microlib/init/entry.s            0x00000000   Number         0  entry2.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry10b.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry5.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7a.o ABSOLUTE
-    ../clib/microlib/init/entry.s            0x00000000   Number         0  entry7b.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llsshr.o ABSOLUTE
-    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
     ../clib/microlib/longlong.c              0x00000000   Number         0  llshl.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/longlong.c              0x00000000   Number         0  llushr.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfb.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf7.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
+    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf0.o ABSOLUTE
     ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf1.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf2.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf3.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf4.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf5.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf6.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printf8.o ABSOLUTE
-    ../clib/microlib/printf/printf.c         0x00000000   Number         0  printfa.o ABSOLUTE
     ../clib/microlib/printf/stubs.s          0x00000000   Number         0  stubs.o ABSOLUTE
     ../clib/microlib/stdio/fgetc.c           0x00000000   Number         0  fgetc_b.o ABSOLUTE
     ../clib/microlib/stdio/semi.s            0x00000000   Number         0  semi.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdout.o ABSOLUTE
     ../clib/microlib/stdio/streams.c         0x00000000   Number         0  stdin.o ABSOLUTE
-    ../clib/microlib/stubs.s                 0x00000000   Number         0  iusesemig.o ABSOLUTE
     ../clib/microlib/stubs.s                 0x00000000   Number         0  iusefp.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  scanf_char.o ABSOLUTE
+    ../clib/microlib/stubs.s                 0x00000000   Number         0  iusesemig.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  scanf_char_file.o ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  _scanf_str.o ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  __0scanf.o ABSOLUTE
-    ../clib/scanf.c                          0x00000000   Number         0  scanf_char_file.o ABSOLUTE
+    ../clib/scanf.c                          0x00000000   Number         0  scanf_char.o ABSOLUTE
     ../clib/scanf.c                          0x00000000   Number         0  _scanf.o ABSOLUTE
     ../fplib/microlib/f2d.c                  0x00000000   Number         0  f2d.o ABSOLUTE
     ../fplib/microlib/fpadd.c                0x00000000   Number         0  dadd.o ABSOLUTE
@@ -414,28 +414,30 @@ Image Symbol Table
     .text                                    0x00000946   Section        0  isspace_c.o(.text)
     .text                                    0x00000946   Section        0  semi.o(.text)
     .text                                    0x00000950   Section        0  _scanf.o(.text)
-    .text                                    0x00000c7c   Section        0  iusesemig.o(.text)
     .text                                    0x00000c7c   Section        0  ctype_c.o(.text)
+    .text                                    0x00000c7c   Section        0  iusesemig.o(.text)
     i.Output_Init                            0x00000ca4   Section        0  uart.o(i.Output_Init)
-    i.UART_InChar                            0x00000cac   Section        0  uart.o(i.UART_InChar)
-    i.UART_Init                              0x00000cc4   Section        0  uart.o(i.UART_Init)
-    i.UART_OutChar                           0x00000d4c   Section        0  uart.o(i.UART_OutChar)
-    i.__0printf                              0x00000d64   Section        0  printfa.o(i.__0printf)
-    i.__scatterload_copy                     0x00000d84   Section       14  handlers.o(i.__scatterload_copy)
-    i.__scatterload_null                     0x00000d92   Section        2  handlers.o(i.__scatterload_null)
-    i.__scatterload_zeroinit                 0x00000d94   Section       14  handlers.o(i.__scatterload_zeroinit)
-    i._fp_digits                             0x00000da4   Section        0  printfa.o(i._fp_digits)
-    _fp_digits                               0x00000da5   Thumb Code   326  printfa.o(i._fp_digits)
-    i._printf_core                           0x00000f00   Section        0  printfa.o(i._printf_core)
-    _printf_core                             0x00000f01   Thumb Code  1762  printfa.o(i._printf_core)
-    i._printf_post_padding                   0x000015f0   Section        0  printfa.o(i._printf_post_padding)
-    _printf_post_padding                     0x000015f1   Thumb Code    38  printfa.o(i._printf_post_padding)
-    i._printf_pre_padding                    0x00001616   Section        0  printfa.o(i._printf_pre_padding)
-    _printf_pre_padding                      0x00001617   Thumb Code    48  printfa.o(i._printf_pre_padding)
-    i.fgetc                                  0x00001646   Section        0  uart.o(i.fgetc)
-    i.fputc                                  0x0000165a   Section        0  uart.o(i.fputc)
-    i.main                                   0x00001688   Section        0  main.o(i.main)
-    .constdata                               0x00001764   Section       64  ctype_c.o(.constdata)
+    i.PortF_Init                             0x00000cac   Section        0  main.o(i.PortF_Init)
+    i.PortF_Output                           0x00000d08   Section        0  main.o(i.PortF_Output)
+    i.UART_InChar                            0x00000d14   Section        0  uart.o(i.UART_InChar)
+    i.UART_Init                              0x00000d2c   Section        0  uart.o(i.UART_Init)
+    i.UART_OutChar                           0x00000db4   Section        0  uart.o(i.UART_OutChar)
+    i.__0printf                              0x00000dcc   Section        0  printfa.o(i.__0printf)
+    i.__scatterload_copy                     0x00000dec   Section       14  handlers.o(i.__scatterload_copy)
+    i.__scatterload_null                     0x00000dfa   Section        2  handlers.o(i.__scatterload_null)
+    i.__scatterload_zeroinit                 0x00000dfc   Section       14  handlers.o(i.__scatterload_zeroinit)
+    i._fp_digits                             0x00000e0c   Section        0  printfa.o(i._fp_digits)
+    _fp_digits                               0x00000e0d   Thumb Code   326  printfa.o(i._fp_digits)
+    i._printf_core                           0x00000f68   Section        0  printfa.o(i._printf_core)
+    _printf_core                             0x00000f69   Thumb Code  1762  printfa.o(i._printf_core)
+    i._printf_post_padding                   0x00001658   Section        0  printfa.o(i._printf_post_padding)
+    _printf_post_padding                     0x00001659   Thumb Code    38  printfa.o(i._printf_post_padding)
+    i._printf_pre_padding                    0x0000167e   Section        0  printfa.o(i._printf_pre_padding)
+    _printf_pre_padding                      0x0000167f   Thumb Code    48  printfa.o(i._printf_pre_padding)
+    i.fgetc                                  0x000016ae   Section        0  uart.o(i.fgetc)
+    i.fputc                                  0x000016c2   Section        0  uart.o(i.fputc)
+    i.main                                   0x000016f0   Section        0  main.o(i.main)
+    .constdata                               0x000017dc   Section       64  ctype_c.o(.constdata)
     .data                                    0x20000000   Section        4  stdin.o(.data)
     .data                                    0x20000004   Section        4  stdout.o(.data)
     .data                                    0x20000008   Section        3  fgetc_b.o(.data)
@@ -666,23 +668,25 @@ Image Symbol Table
     __I$use$semihosting$fgetc                0x00000c7d   Thumb Code     0  iusesemig.o(.text)
     __ctype_lookup                           0x00000c7d   Thumb Code    34  ctype_c.o(.text)
     Output_Init                              0x00000ca5   Thumb Code     8  uart.o(i.Output_Init)
-    UART_InChar                              0x00000cad   Thumb Code    20  uart.o(i.UART_InChar)
-    UART_Init                                0x00000cc5   Thumb Code   118  uart.o(i.UART_Init)
-    UART_OutChar                             0x00000d4d   Thumb Code    18  uart.o(i.UART_OutChar)
-    __0printf                                0x00000d65   Thumb Code    22  printfa.o(i.__0printf)
-    __1printf                                0x00000d65   Thumb Code     0  printfa.o(i.__0printf)
-    __2printf                                0x00000d65   Thumb Code     0  printfa.o(i.__0printf)
-    __c89printf                              0x00000d65   Thumb Code     0  printfa.o(i.__0printf)
-    printf                                   0x00000d65   Thumb Code     0  printfa.o(i.__0printf)
-    __scatterload_copy                       0x00000d85   Thumb Code    14  handlers.o(i.__scatterload_copy)
-    __scatterload_null                       0x00000d93   Thumb Code     2  handlers.o(i.__scatterload_null)
-    __scatterload_zeroinit                   0x00000d95   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
-    fgetc                                    0x00001647   Thumb Code    20  uart.o(i.fgetc)
-    fputc                                    0x0000165b   Thumb Code    44  uart.o(i.fputc)
-    main                                     0x00001689   Thumb Code   106  main.o(i.main)
-    __ctype_categories                       0x00001764   Data          64  ctype_c.o(.constdata)
-    Region$$Table$$Base                      0x000017a4   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x000017c4   Number         0  anon$$obj.o(Region$$Table)
+    PortF_Init                               0x00000cad   Thumb Code    74  main.o(i.PortF_Init)
+    PortF_Output                             0x00000d09   Thumb Code     6  main.o(i.PortF_Output)
+    UART_InChar                              0x00000d15   Thumb Code    20  uart.o(i.UART_InChar)
+    UART_Init                                0x00000d2d   Thumb Code   118  uart.o(i.UART_Init)
+    UART_OutChar                             0x00000db5   Thumb Code    18  uart.o(i.UART_OutChar)
+    __0printf                                0x00000dcd   Thumb Code    22  printfa.o(i.__0printf)
+    __1printf                                0x00000dcd   Thumb Code     0  printfa.o(i.__0printf)
+    __2printf                                0x00000dcd   Thumb Code     0  printfa.o(i.__0printf)
+    __c89printf                              0x00000dcd   Thumb Code     0  printfa.o(i.__0printf)
+    printf                                   0x00000dcd   Thumb Code     0  printfa.o(i.__0printf)
+    __scatterload_copy                       0x00000ded   Thumb Code    14  handlers.o(i.__scatterload_copy)
+    __scatterload_null                       0x00000dfb   Thumb Code     2  handlers.o(i.__scatterload_null)
+    __scatterload_zeroinit                   0x00000dfd   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
+    fgetc                                    0x000016af   Thumb Code    20  uart.o(i.fgetc)
+    fputc                                    0x000016c3   Thumb Code    44  uart.o(i.fputc)
+    main                                     0x000016f1   Thumb Code   122  main.o(i.main)
+    __ctype_categories                       0x000017dc   Data          64  ctype_c.o(.constdata)
+    Region$$Table$$Base                      0x0000181c   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x0000183c   Number         0  anon$$obj.o(Region$$Table)
     __stdin                                  0x20000000   Data           4  stdin.o(.data)
     __stdout                                 0x20000004   Data           4  stdout.o(.data)
     __initial_sp                             0x20000410   Data           0  startup.o(STACK)
@@ -695,9 +699,9 @@ Memory Map of the image
 
   Image Entry point : 0x0000026d
 
-  Load Region LR_1 (Base: 0x00000000, Size: 0x000017d0, Max: 0xffffffff, ABSOLUTE)
+  Load Region LR_1 (Base: 0x00000000, Size: 0x00001848, Max: 0xffffffff, ABSOLUTE)
 
-    Execution Region ER_RO (Base: 0x00000000, Size: 0x000017c4, Max: 0xffffffff, ABSOLUTE)
+    Execution Region ER_RO (Base: 0x00000000, Size: 0x0000183c, Max: 0xffffffff, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -736,24 +740,26 @@ Memory Map of the image
     0x00000c7c   0x00000000   Code   RO          463    .text               mc_w.l(iusesemig.o)
     0x00000c7c   0x00000028   Code   RO          464    .text               mc_w.l(ctype_c.o)
     0x00000ca4   0x00000008   Code   RO           14    i.Output_Init       uart.o
-    0x00000cac   0x00000018   Code   RO           17    i.UART_InChar       uart.o
-    0x00000cc4   0x00000088   Code   RO           18    i.UART_Init         uart.o
-    0x00000d4c   0x00000018   Code   RO           19    i.UART_OutChar      uart.o
-    0x00000d64   0x00000020   Code   RO          376    i.__0printf         mc_w.l(printfa.o)
-    0x00000d84   0x0000000e   Code   RO          469    i.__scatterload_copy  mc_w.l(handlers.o)
-    0x00000d92   0x00000002   Code   RO          470    i.__scatterload_null  mc_w.l(handlers.o)
-    0x00000d94   0x0000000e   Code   RO          471    i.__scatterload_zeroinit  mc_w.l(handlers.o)
-    0x00000da2   0x00000002   PAD
-    0x00000da4   0x0000015c   Code   RO          383    i._fp_digits        mc_w.l(printfa.o)
-    0x00000f00   0x000006f0   Code   RO          384    i._printf_core      mc_w.l(printfa.o)
-    0x000015f0   0x00000026   Code   RO          385    i._printf_post_padding  mc_w.l(printfa.o)
-    0x00001616   0x00000030   Code   RO          386    i._printf_pre_padding  mc_w.l(printfa.o)
-    0x00001646   0x00000014   Code   RO           21    i.fgetc             uart.o
-    0x0000165a   0x0000002c   Code   RO           22    i.fputc             uart.o
-    0x00001686   0x00000002   PAD
-    0x00001688   0x000000dc   Code   RO          103    i.main              main.o
-    0x00001764   0x00000040   Data   RO          465    .constdata          mc_w.l(ctype_c.o)
-    0x000017a4   0x00000020   Data   RO          467    Region$$Table       anon$$obj.o
+    0x00000cac   0x0000005c   Code   RO          100    i.PortF_Init        main.o
+    0x00000d08   0x0000000c   Code   RO          102    i.PortF_Output      main.o
+    0x00000d14   0x00000018   Code   RO           17    i.UART_InChar       uart.o
+    0x00000d2c   0x00000088   Code   RO           18    i.UART_Init         uart.o
+    0x00000db4   0x00000018   Code   RO           19    i.UART_OutChar      uart.o
+    0x00000dcc   0x00000020   Code   RO          376    i.__0printf         mc_w.l(printfa.o)
+    0x00000dec   0x0000000e   Code   RO          469    i.__scatterload_copy  mc_w.l(handlers.o)
+    0x00000dfa   0x00000002   Code   RO          470    i.__scatterload_null  mc_w.l(handlers.o)
+    0x00000dfc   0x0000000e   Code   RO          471    i.__scatterload_zeroinit  mc_w.l(handlers.o)
+    0x00000e0a   0x00000002   PAD
+    0x00000e0c   0x0000015c   Code   RO          383    i._fp_digits        mc_w.l(printfa.o)
+    0x00000f68   0x000006f0   Code   RO          384    i._printf_core      mc_w.l(printfa.o)
+    0x00001658   0x00000026   Code   RO          385    i._printf_post_padding  mc_w.l(printfa.o)
+    0x0000167e   0x00000030   Code   RO          386    i._printf_pre_padding  mc_w.l(printfa.o)
+    0x000016ae   0x00000014   Code   RO           21    i.fgetc             uart.o
+    0x000016c2   0x0000002c   Code   RO           22    i.fputc             uart.o
+    0x000016ee   0x00000002   PAD
+    0x000016f0   0x000000ec   Code   RO          103    i.main              main.o
+    0x000017dc   0x00000040   Data   RO          465    .constdata          mc_w.l(ctype_c.o)
+    0x0000181c   0x00000020   Data   RO          467    Region$$Table       anon$$obj.o
 
 
     Execution Region ER_RW (Base: 0x20000000, Size: 0x0000000c, Max: 0xffffffff, ABSOLUTE)
@@ -780,12 +786,12 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       220        114          0          0          0        543   main.o
+       340        138          0          0          0       1959   main.o
        660        620          0          0       1024        732   startup.o
-       256         28          0          0          0       5311   uart.o
+       256         28          0          0          0       8123   uart.o
 
     ----------------------------------------------------------------------
-      1138        762         32          0       1024       6586   Object Totals
+      1258        786         32          0       1024      10814   Object Totals
          0          0         32          0          0          0   (incl. Generated)
          2          0          0          0          0          0   (incl. Padding)
 
@@ -850,15 +856,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-      5988        910         96         12       1028       7358   Grand Totals
-      5988        910         96         12       1028       7358   ELF Image Totals
-      5988        910         96         12          0          0   ROM Totals
+      6108        934         96         12       1028      11486   Grand Totals
+      6108        934         96         12       1028      11486   ELF Image Totals
+      6108        934         96         12          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                 6084 (   5.94kB)
+    Total RO  Size (Code + RO Data)                 6204 (   6.06kB)
     Total RW  Size (RW Data + ZI Data)              1040 (   1.02kB)
-    Total ROM Size (Code + RO Data + RW Data)       6096 (   5.95kB)
+    Total ROM Size (Code + RO Data + RW Data)       6216 (   6.07kB)
 
 ==============================================================================
 
