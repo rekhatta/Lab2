@@ -78,17 +78,29 @@ void GPIO_Init(void){
   GPIO_PORTD_AFSEL_R &= ~0x0F;      // 6) regular port function 
   GPIO_PORTD_DEN_R |= 0x0F;         // 7) enable digital I/O on PD3-0
 }
-int main(void){ int32_t i,n;
+int main(void){
   Output_Init();              // initialize output device
-  BookExamples();
-  n = 0;
-	GPIO_Init();
-  while(1){
-    //printf("\ni="); 
-    for(i=0; i<5; i++){
-      printf("%d ",i+n);
-    }
-
-    n = n+1000000; // notice what happend when this goes above 2,147,483,647
-  }
+  char x, y, add;
+	int op1, op2, zOut;
+	printf("Input first number:\n");
+	
+	//Replaced by UART I/O
+	scanf("%c", &x);
+	op1 = (int)x;
+	printf("%d\n", op1);
+	printf("Input second number:\n");
+	scanf("%c", &y);
+	op2 = (int)y;
+	printf("%d\n", op2);
+	printf("Right button to add\nLeft button to subtract");
+	scanf("%c", &add);
+	switch(add){
+		case '1':
+			zOut = op1 + op2;
+			break;
+		case '0':
+			zOut = op1 - op2;
+			break;
+	}	
+	printf("\nzOut: %d", zOut);
 }
