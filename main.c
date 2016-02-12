@@ -51,12 +51,21 @@ void PortF_Init(void){ volatile uint32_t delay;
   GPIO_PORTF_PUR_R = 0x11;          // enable pull-up on PF0 and PF4
   GPIO_PORTF_DEN_R = 0x1F;          // 7) enable digital I/O on PF4-0
 }
+
+
 uint32_t PortF_Input(void){     
   return (GPIO_PORTF_DATA_R&0x11);  // read PF4,PF0 inputs
 }
 
 void PortF_Output(uint32_t data){ // write PF3-PF1 outputs
   GPIO_PORTF_DATA_R = data;      
+}
+uint32_t PortD_Input(void){     
+  return (GPIO_PORTD_DATA_R&0x0F);  // read PF4,PF0 inputs
+}
+
+void PortD_Output(uint32_t data){ // write PF3-PF1 outputs
+  GPIO_PORTD_DATA_R = data;      
 }
 
 void BookExamples(void){ // examples from the book
@@ -75,34 +84,64 @@ void GPIO_Init(void){
                                     // 2) no need to unlock PD3-0
   GPIO_PORTD_AMSEL_R &= ~0x0F;      // 3) disable analog functionality on PD3-0
   GPIO_PORTD_PCTL_R &= ~0x0000FFFF; // 4) GPIO
-  GPIO_PORTD_DIR_R |= 0x0F;         // 5) make PD3-0 out
+  GPIO_PORTD_DIR_R |= 0x00;         // 5) make PD3-0 out ISAAC ROBERT 
   GPIO_PORTD_AFSEL_R &= ~0x0F;      // 6) regular port function 
   GPIO_PORTD_DEN_R |= 0x0F;         // 7) enable digital I/O on PD3-0
 }
 
+void portD_Listener(uint32_t *data) {
+	for( ; ; ){
+		if (SW1 == 1) {
+			*data=PortD_Input();
+			break;
+		} else continue;
+	}
+}
+
+char op_check(){
+	char operation;
+	while (1){
+		if (SW1 == 1) {
+			operation='1';
+			break;
+		}	else if (SW2 == 1) {
+			operation = '2';
+			break;
+		}	else operation = '0';
+	}	
+	return operation;
+}	
+
 int main(void){
   Output_Init();              // initialize output device
   PortF_Init();
-	char x, y, add;
+	GPIO_Init();
+	char operand;
 	int op1, op2, zOut;
+	uint32_t swIn, sw2In;
 	printf("Input first number:\n");
 	PortF_Output(RED);
 	//Replaced by UART I/O
-	scanf("%c", &x);
-	op1 = (int)x;
+	//scanf("%c", &x);
+	
+	portD_Listener(&swIn);
+	op1 = (int)swIn;
 	printf("%d\n", op1);
 	printf("Input second number:\n");
-	scanf("%c", &y);
-	op2 = (int)y;
+	//scanf("%c", &y);
+	portD_Listener(&sw2In);
+	op2 = (int)sw2In;
 	printf("%d\n", op2);
 	printf("Right button to add\nLeft button to subtract");
-	scanf("%c", &add);
+	operand =op_check();
+	
+	//scanf("%c", &add);
 	PortF_Output(GREEN);
-	switch(add){
+	switch(operand){
 		case '1':
 			zOut = op1 + op2;
 			break;
-		case '0':
+		case '2':
 			zOut = op1 - op2;
 			break;
 	}	
