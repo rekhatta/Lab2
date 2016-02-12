@@ -28,8 +28,8 @@
 #define PF0       (*((volatile uint32_t *)0x40025004))
 #define PF4       (*((volatile uint32_t *)0x40025040))
 #define SWITCHES  (*((volatile uint32_t *)0x40025044))
-#define SW1       0x10                      // on the left side of the Launchpad board
-#define SW2       0x01                      // on the right side of the Launchpad board
+#define SW2       0x10                      // on the left side of the Launchpad board
+#define SW1       0x01                      // on the right side of the Launchpad board
 #define SYSCTL_RCGC2_GPIOF      0x00000020  // port F Clock Gating Control
 #define RED       0x02
 #define BLUE      0x04
@@ -88,11 +88,18 @@ void GPIO_Init(void){
   GPIO_PORTD_AFSEL_R &= ~0x0F;      // 6) regular port function 
   GPIO_PORTD_DEN_R |= 0x0F;         // 7) enable digital I/O on PD3-0
 }
+void delay(){
+	int x=1000000;
+	while (x>0){
+		x--;
+	}
+}
 
 void portD_Listener(uint32_t *data) {
 	for( ; ; ){
-		if (SW1 == 1) {
+		if (SW1 == PortF_Input()) {
 			*data=PortD_Input();
+			delay();
 			break;
 		} else continue;
 	}
@@ -101,11 +108,13 @@ void portD_Listener(uint32_t *data) {
 char op_check(){
 	char operation;
 	while (1){
-		if (SW1 == 1) {
+		if (SW1 == PortF_Input()) {
 			operation='1';
+			delay();
 			break;
-		}	else if (SW2 == 1) {
+		}	else if (SW2 == PortF_Input()) {
 			operation = '2';
+			delay();
 			break;
 		}	else operation = '0';
 	}	
@@ -126,11 +135,13 @@ int main(void){
 	
 	portD_Listener(&swIn);
 	op1 = (int)swIn;
+	if (op1>9) op1=9;
 	printf("%d\n", op1);
 	printf("Input second number:\n");
 	//scanf("%c", &y);
 	portD_Listener(&sw2In);
 	op2 = (int)sw2In;
+	if (op2>9) op2=9;
 	printf("%d\n", op2);
 	printf("Right button to add\nLeft button to subtract");
 	operand =op_check();
@@ -145,5 +156,6 @@ int main(void){
 			zOut = op1 - op2;
 			break;
 	}	
+	if (zOut>9) zOut=9;
 	printf("\nzOut: %d", zOut);
 }
