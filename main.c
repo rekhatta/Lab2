@@ -128,7 +128,7 @@ int main(void){
 	char operand;
 	int op1, op2, zOut;
 	uint32_t swIn, sw2In;
-	printf("Input first number:\n");
+	printf("\nInput first number:\n");
 	PortF_Output(RED);
 	//Replaced by UART I/O
 	//scanf("%c", &x);
@@ -143,7 +143,7 @@ int main(void){
 	op2 = (int)sw2In;
 	if (op2>9) op2=9;
 	printf("%d\n", op2);
-	printf("Right button to add\nLeft button to subtract");
+	printf("Left button to add\nRight button to subtract");
 	operand =op_check();
 	
 	//scanf("%c", &add);
@@ -151,11 +151,12 @@ int main(void){
 	switch(operand){
 		case '1':
 			zOut = op1 + op2;
+			printf("\n %d + %d = %d",op1,op2, zOut);
 			break;
 		case '2':
 			zOut = op1 - op2;
+			printf("\n %d - %d = %d",op1,op2, zOut);
 			break;
 	}	
-	if (zOut>9) zOut=9;
-	printf("\nzOut: %d", zOut);
+	
 }
